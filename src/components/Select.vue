@@ -294,7 +294,7 @@
           </a>
         </li>
         <li v-if="!filteredOptions.length" class="no-options">
-          <slot name="no-options">Sorry, no matching options.</slot>
+          <slot name="no-options">Không tìm thấy chủ đề nào.</slot>
         </li>
       </ul>
     </transition>

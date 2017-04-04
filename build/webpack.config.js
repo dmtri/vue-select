@@ -3,7 +3,7 @@ const base = require('./webpack.base.conf')
 const config = require('../config')
 
 base.entry = {
-  lib: './src/index.js'
+  lib: '../src/index.js'
 }
 
 base.output = {
