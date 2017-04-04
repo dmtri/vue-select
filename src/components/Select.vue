@@ -266,8 +266,8 @@
               v-model="search"
               @keydown.delete="maybeDeleteValue"
               @keyup.esc="onEscape"
-              @keydown.up.prevent="typeAheadUp"
-              @keydown.down.prevent="typeAheadDown"
+              @keydown.left.prevent="typeAheadUp"
+              @keydown.right.prevent="typeAheadDown"
               @keyup.enter.prevent="typeAheadSelect"
               @blur="onSearchBlur"
               @focus="onSearchFocus"
@@ -800,7 +800,9 @@
       filteredOptions() {
         let options = this.mutableOptions.filter((option) => {
           if (typeof option === 'object' && option.hasOwnProperty(this.label)) {
-            return option[this.label].toLowerCase().indexOf(this.search.toLowerCase()) > -1
+            // always return whatever is returned by backend instead of filtering by search value
+            // to help search vietnamese word tags using normal alphabet letters
+            return true;
           } else if (typeof option === 'object' && !option.hasOwnProperty(this.label)) {
             return console.warn(`[vue-select warn]: Label key "option.${this.label}" does not exist in options object.\nhttp://sagalbot.github.io/vue-select/#ex-labels`)
           }
