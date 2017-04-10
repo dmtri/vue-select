@@ -784,9 +784,7 @@
        * @return {String} Placeholder text
        */
       searchPlaceholder() {
-        if (this.isValueEmpty && this.placeholder) {
-          return this.placeholder;
-        }
+        return this.placeholder;
       },
 
       /**
