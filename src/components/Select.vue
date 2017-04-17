@@ -9,44 +9,7 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
   }
-  /* Open Indicator */
-  .v-select .open-indicator {
-    position: absolute;
-    bottom: 6px;
-    right: 10px;
-    display: inline-block;
-    cursor: pointer;
-    pointer-events: all;
-    transition: all 150ms cubic-bezier(1.000, -0.115, 0.975, 0.855);
-    transition-timing-function: cubic-bezier(1.000, -0.115, 0.975, 0.855);
-    opacity: 1;
-    transition: opacity .1s;
-    height: 20px; width: 10px;
-  }
-  .v-select .open-indicator:before {
-    border-color: rgba(60, 60, 60, .5);
-    border-style: solid;
-    border-width: 3px 3px 0 0;
-    content: '';
-    display: inline-block;
-    height: 10px;
-    width: 10px;
-    vertical-align: top;
-    transform: rotate(133deg);
-    transition: all 150ms cubic-bezier(1.000, -0.115, 0.975, 0.855);
-    transition-timing-function: cubic-bezier(1.000, -0.115, 0.975, 0.855);
-    box-sizing: inherit;
-  }
-  /* Open Indicator States */
-  .v-select.open .open-indicator:before {
-    transform: rotate(315deg);
-  }
-  .v-select.loading .open-indicator {
-    opacity: 0;
-  }
-  .v-select.open .open-indicator {
-    bottom: 1px;
-  }
+
   /* Dropdown Toggle */
   .v-select .dropdown-toggle {
     -webkit-appearance: none;
@@ -195,50 +158,7 @@
   .v-select .highlight:not(:last-child) {
     margin-bottom: 0; /* Fixes Bulma Margin */
   }
-  /* Loading Spinner */
-  .v-select .spinner {
-    opacity: 0;
-    position: absolute;
-    top: 5px;
-    right: 10px;
-    font-size: 5px;
-    text-indent: -9999em;
-    overflow: hidden;
-    border-top: .9em solid rgba(100, 100, 100, .1);
-    border-right: .9em solid rgba(100, 100, 100, .1);
-    border-bottom: .9em solid rgba(100, 100, 100, .1);
-    border-left: .9em solid rgba(60, 60, 60, .45);
-    transform: translateZ(0);
-    animation: vSelectSpinner 1.1s infinite linear;
-    transition: opacity .1s;
-  }
-  .v-select .spinner,
-  .v-select .spinner:after {
-    border-radius: 50%;
-    width: 5em;
-    height: 5em;
-  }
-  /* Loading Spinner States */
-  .v-select.loading .spinner {
-    opacity: 1;
-  }
-  /* KeyFrames */
-  @-webkit-keyframes vSelectSpinner {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  @keyframes vSelectSpinner {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
+
   /* Dropdown Default Transition */
   .fade-enter-active,
   .fade-leave-active {
@@ -280,7 +200,6 @@
       >
 
       <i v-if="!noDrop" ref="openIndicator" role="presentation" class="open-indicator"></i>
-
     </div>
 
     <transition :name="transition">
