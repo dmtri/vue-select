@@ -783,7 +783,7 @@
        * @return {Boolean} True if open
        */
       dropdownOpen() {
-        return this.noDrop ? false : this.open && !this.mutableLoading
+        return this.noDrop ? false : this.open
       },
 
       /**
