@@ -293,7 +293,7 @@
             {{ getOptionLabel(option) }}
           </a>
         </li>
-        <li v-if="!filteredOptions.length" class="no-options">
+        <li v-if="!filteredOptions.length && search.length" class="no-options">
           <slot name="no-options">Không tìm thấy chủ đề nào.</slot>
         </li>
       </ul>
@@ -310,6 +310,13 @@
     mixins: [pointerScroll, typeAheadPointer, ajax],
 
     props: {
+      /**
+       * custom callback for when the input is blurred
+       */
+      blurHandler: {
+        default: null
+      },
+
       /**
        * Contains the currently selected value. Very similar to a
        * `value` attribute on an <input>. You can listen for changes
@@ -696,6 +703,7 @@
       onSearchBlur() {
         this.open = false
         this.$emit('search:blur')
+        this.blurHandler()
       },
 
       /**
