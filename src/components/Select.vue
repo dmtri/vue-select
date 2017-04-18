@@ -181,34 +181,36 @@
         </button>
       </span>
 
-      <input
-              ref="search"
-              v-model="search"
-              @keydown.delete="maybeDeleteValue"
-              @keyup.esc="onEscape"
-              @keydown.left.prevent="typeAheadUp"
-              @keydown.right.prevent="typeAheadDown"
-              @keyup.enter.prevent="typeAheadSelect"
-              @blur="onSearchBlur"
-              @focus="onSearchFocus"
-              type="search"
-              class="form-control"
-              :placeholder="searchPlaceholder"
-              :readonly="!searchable"
-              :style="{ width: isValueEmpty ? '100%' : 'auto' }"
-              :id="inputId"
-      >
+      <label>
+        <input
+                ref="search"
+                v-model="search"
+                @keydown.delete="maybeDeleteValue"
+                @keyup.esc="onEscape"
+                @keydown.left.prevent="typeAheadUp"
+                @keydown.right.prevent="typeAheadDown"
+                @keyup.enter.prevent="typeAheadSelect"
+                @blur="onSearchBlur"
+                @focus="onSearchFocus"
+                type="search"
+                class="form-control"
+                :placeholder="searchPlaceholder"
+                :readonly="!searchable"
+                :style="{ width: isValueEmpty ? '100%' : 'auto' }"
+                :id="inputId"
+        >
+
+        <span v-show="mutableLoading">
+          <slot name="spinner">
+          </slot>
+        </span>
+      </label>
 
       <i v-if="!noDrop" ref="openIndicator" role="presentation" class="open-indicator"></i>
     </div>
 
     <transition :name="transition">
       <ul ref="dropdownMenu" v-if="dropdownOpen && search.length" class="dropdown-menu" :style="{ 'max-height': maxHeight }">
-        <div v-show="mutableLoading">
-          <slot name="spinner">
-            <div class="spinner">Loading...</div>
-          </slot>
-        </div>
         <li v-for="(option, index) in filteredOptions" v-bind:key="index" :class="{ active: isOptionSelected(option), highlight: index === typeAheadPointer }" @mouseover="typeAheadPointer = index">
           <a @mousedown.prevent="select(option)">
             {{ getOptionLabel(option) }}
@@ -704,7 +706,7 @@
        * @return {Boolean} True if open
        */
       dropdownOpen() {
-        return this.noDrop ? false : this.open
+        return this.noDrop ? false : this.open && !this.mutableLoading
       },
 
       /**
