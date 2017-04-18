@@ -182,6 +182,10 @@
       </span>
 
       <label>
+        <span v-show="mutableLoading">
+          <slot name="spinner">
+          </slot>
+        </span>
         <input
                 ref="search"
                 v-model="search"
@@ -197,14 +201,8 @@
                 class="form-control"
                 :placeholder="searchPlaceholder"
                 :readonly="!searchable"
-                :style="{ width: isValueEmpty ? '100%' : 'auto' }"
                 :id="inputId"
         >
-
-        <span v-show="mutableLoading">
-          <slot name="spinner">
-          </slot>
-        </span>
       </label>
 
       <i v-if="!noDrop" ref="openIndicator" role="presentation" class="open-indicator"></i>
