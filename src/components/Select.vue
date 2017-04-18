@@ -185,6 +185,7 @@
         <input
                 ref="search"
                 v-model="search"
+                @keydown="toggleLoading"
                 @keydown.delete="maybeDeleteValue"
                 @keyup.esc="onEscape"
                 @keydown.left.prevent="typeAheadUp"
@@ -682,6 +683,13 @@
         if (this.pushTags) {
           this.mutableOptions.push(option)
         }
+      },
+
+      /**
+       * Toggle loading state when user type anything
+       */
+      toggleLoading() {
+        this.mutableLoading = true;
       }
     },
 
