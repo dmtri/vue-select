@@ -204,9 +204,11 @@
 
     <transition :name="transition">
       <ul ref="dropdownMenu" v-if="dropdownOpen && search.length" class="dropdown-menu" :style="{ 'max-height': maxHeight }">
-        <slot name="spinner">
-          <div class="spinner" v-show="mutableLoading">Loading...</div>
-        </slot>
+        <div v-show="mutableLoading">
+          <slot name="spinner">
+            <div class="spinner">Loading...</div>
+          </slot>
+        </div>
         <li v-for="(option, index) in filteredOptions" v-bind:key="index" :class="{ active: isOptionSelected(option), highlight: index === typeAheadPointer }" @mouseover="typeAheadPointer = index">
           <a @mousedown.prevent="select(option)">
             {{ getOptionLabel(option) }}
