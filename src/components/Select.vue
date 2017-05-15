@@ -215,7 +215,7 @@
           </a>
         </li>
         <li v-if="!filteredOptions.length" class="no-options">
-          <slot name="no-options">Không tìm thấy chủ đề nào.</slot>
+          <slot name="no-options">Không tìm thấy kết quả nào.</slot>
         </li>
       </ul>
     </transition>
