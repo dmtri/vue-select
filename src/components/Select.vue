@@ -571,6 +571,7 @@
       toggleDropdown(e) {
         if (e.target === this.$refs.openIndicator || e.target === this.$refs.search || e.target === this.$refs.toggle || e.target === this.$el) {
           if (this.open) {
+            if (this.blurHandler) return; // do not trigger blur when user has passed in a custom blurHandler, it'll lead to unexpected bugs
             this.$refs.search.blur() // dropdown will close on blur
           } else {
             this.open = true
@@ -624,7 +625,7 @@
       onSearchBlur() {
         this.open = false
         this.$emit('search:blur')
-        this.blurHandler()
+        if (this.blurHandler) this.blurHandler()
       },
 
       /**
